@@ -1,0 +1,22 @@
+# grails-specific excludes
+bin
+plugins
+target
+target-eclipse
+.link_to_grails_plugins
+
+.svn
+.DS_Store
+/logs/
+/.gradle
+*.log
+*.swp
+
+# ide specific excludes
+.settings
+.classpath
+.idea/
+*.iml
+.project
+atlassian-ide-plugin.xml
+/out/
