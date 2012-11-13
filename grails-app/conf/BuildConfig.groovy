@@ -13,8 +13,8 @@ grails.project.dependency.resolution = {
         grailsCentral()
         // uncomment the below to enable remote dependency resolution
         // from public Maven repositories
-        //mavenLocal()
-        //mavenCentral()
+        mavenLocal()
+        mavenCentral()
         //mavenRepo "http://snapshots.repository.codehaus.org"
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
@@ -24,6 +24,10 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
         // runtime 'mysql:mysql-connector-java:5.1.18'
+
+        compile 'org.crsh:crsh.shell.embed.spring:1.2.0-cr3'
+        compile 'org.crsh:crsh.shell.ssh:1.2.0-cr3'
+        compile 'org.crsh:crsh.shell.telnet:1.2.0-cr3'
     }
 
     plugins {

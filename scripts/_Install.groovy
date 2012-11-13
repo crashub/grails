@@ -8,3 +8,6 @@
 //
 //    ant.mkdir(dir:"${basedir}/grails-app/jobs")
 //
+
+ant.mkdir(dir:"${basedir}/web-app/WEB-INF/crash")
+ant.mkdir(dir:"${basedir}/web-app/WEB-INF/crash/commands")

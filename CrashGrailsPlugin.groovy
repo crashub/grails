@@ -1,6 +1,8 @@
-class CrshGrailsPluginGrailsPlugin {
+import org.crsh.spring.SpringWebBootstrap
+
+class CrashGrailsPlugin {
     // the plugin version
-    def version = "0.1"
+    def version = "1.2.0-cr3"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "2.1 > *"
     // the other plugins this plugin depends on
@@ -11,11 +13,11 @@ class CrshGrailsPluginGrailsPlugin {
     ]
 
     // TODO Fill in these fields
-    def title = "Crsh Grails Plugin Plugin" // Headline display name of the plugin
-    def author = "Your name"
-    def authorEmail = ""
+    def title = "CRaSH Grails Plugin " // Headline display name of the plugin
+    def author = "Stephan Jaetzold"
+    def authorEmail = "stephan@jaetzold.de"
     def description = '''\
-Brief summary/description of the plugin.
+Integrates CRaSH (http://www.crashub.org/) into grails.
 '''
 
     // URL to the plugin's documentation
@@ -43,7 +45,18 @@ Brief summary/description of the plugin.
     }
 
     def doWithSpring = {
-        // TODO Implement runtime spring config (optional)
+        // Implement runtime spring config
+        crashSpringWebBootstrap(SpringWebBootstrap) {
+            config = [
+                    'crash.vfs.refresh_period': 1,
+                    'crash.ssh.port': 2000,
+                    'crash.telnet.port': 5000,
+                    'crash.auth': 'simple',
+                    'crash.auth.simple.username': 'admin',
+                    'crash.auth.simple.password': 'admin'
+            ]
+        }
+
     }
 
     def doWithDynamicMethods = { ctx ->
