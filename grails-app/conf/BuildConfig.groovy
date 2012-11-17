@@ -27,7 +27,6 @@ grails.project.dependency.resolution = {
 
         compile 'org.crsh:crsh.shell.embed.spring:1.2.0-cr3'
         compile 'org.crsh:crsh.shell.ssh:1.2.0-cr3'
-        compile 'org.crsh:crsh.shell.telnet:1.2.0-cr3'
     }
 
     plugins {

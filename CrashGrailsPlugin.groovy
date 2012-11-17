@@ -1,4 +1,5 @@
 import org.crsh.spring.SpringWebBootstrap
+import org.codehaus.groovy.grails.commons.GrailsApplication
 
 class CrashGrailsPlugin {
     // the plugin version
@@ -17,7 +18,7 @@ class CrashGrailsPlugin {
     def author = "Stephan Jaetzold"
     def authorEmail = "stephan@jaetzold.de"
     def description = '''\
-Integrates CRaSH (http://www.crashub.org/) into grails.
+Integrates the Common Reusable SHell (CRaSH) into grails.
 '''
 
     // URL to the plugin's documentation
@@ -45,16 +46,18 @@ Integrates CRaSH (http://www.crashub.org/) into grails.
     }
 
     def doWithSpring = {
+        def defaultConfig = [
+                'crash.vfs.refresh_period': 1,
+                'crash.ssh.port': 2000,
+                'crash.telnet.port': 5000,
+                'crash.auth': 'simple',
+                'crash.auth.simple.username': 'admin',
+                'crash.auth.simple.password': 'admin'
+        ]
+        defaultConfig.putAll((Map)application.config.grails.plugin.crash.config)
         // Implement runtime spring config
         crashSpringWebBootstrap(SpringWebBootstrap) {
-            config = [
-                    'crash.vfs.refresh_period': 1,
-                    'crash.ssh.port': 2000,
-                    'crash.telnet.port': 5000,
-                    'crash.auth': 'simple',
-                    'crash.auth.simple.username': 'admin',
-                    'crash.auth.simple.password': 'admin'
-            ]
+            config = defaultConfig
         }
 
     }
