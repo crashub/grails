@@ -20,4 +20,10 @@ To include telnet support include the following dependency in your own BuildConf
 
     runtime 'org.crsh:crsh.shell.telnet:1.2.0-cr3'
 
+# Grails specific usage
+
+There is an `evaluate` command available which takes a String as argument which is evaluated as a groovy script.
+This script has a variable named [`grailsApplication`][2] available from which pretty much everything of the grails application should be accessible.
+
   [1]: http://www.crashub.org/
+  [2]: http://grails.org/doc/latest/ref/Controllers/grailsApplication.html

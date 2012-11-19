@@ -29,6 +29,7 @@ public class evaluate extends org.crsh.command.CRaSHCommand {
     @Usage("evaluate groovy script")
     public void main(@Usage("the code") @Argument String scriptText) {
         CRaSHSession session = (CRaSHSession)context.session;
+        session['grailsApplication'] = context.attributes.beans['grailsApplication']
         GroovyShell shell = session.getGroovyShell();
         GroovyScriptCommand script = shell.parse(scriptText);
         script.setSession(session);

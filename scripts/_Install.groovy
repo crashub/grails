@@ -11,3 +11,4 @@
 
 ant.mkdir(dir:"${basedir}/web-app/WEB-INF/crash")
 ant.mkdir(dir:"${basedir}/web-app/WEB-INF/crash/commands")
+ant.copy(file:"${basedir}/src/groovy/evaluate.groovy", toDir:"${basedir}/web-app/WEB-INF/crash/commands")
