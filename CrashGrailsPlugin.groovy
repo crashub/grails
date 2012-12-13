@@ -54,7 +54,7 @@ Integrates the Common Reusable SHell (CRaSH) into grails.
                 'crash.auth.simple.username': 'admin',
                 'crash.auth.simple.password': 'admin'
         ]
-        defaultConfig.putAll((Map)application.config.grails.plugin.crash.config)
+        defaultConfig.putAll((Map)application.config.plugin.crash.config)
         // Implement runtime spring config
         crashSpringWebBootstrap(SpringWebBootstrap) {
             config = defaultConfig
