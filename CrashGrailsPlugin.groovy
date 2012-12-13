@@ -18,11 +18,11 @@ class CrashGrailsPlugin {
     def author = "Stephan Jaetzold"
     def authorEmail = "stephan@jaetzold.de"
     def description = '''\
-Integrates the Common Reusable SHell (CRaSH) into grails.
+Integrates the Common Reusable SHell (CRaSH - http://crashub.org/ ) into grails.
 '''
 
     // URL to the plugin's documentation
-    def documentation = "http://grails.org/plugin/crsh-grails-plugin"
+    def documentation = "https://github.com/crashub/grails"
 
     // Extra (optional) plugin metadata
 
