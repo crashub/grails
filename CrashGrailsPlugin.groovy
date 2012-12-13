@@ -1,5 +1,4 @@
 import org.crsh.spring.SpringWebBootstrap
-import org.codehaus.groovy.grails.commons.GrailsApplication
 
 class CrashGrailsPlugin {
     // the plugin version
@@ -13,7 +12,6 @@ class CrashGrailsPlugin {
             "grails-app/views/error.gsp"
     ]
 
-    // TODO Fill in these fields
     def title = "CRaSH Grails Plugin " // Headline display name of the plugin
     def author = "Stephan Jaetzold"
     def authorEmail = "stephan@jaetzold.de"
@@ -27,7 +25,7 @@ Integrates the Common Reusable SHell (CRaSH - http://crashub.org/ ) into grails.
     // Extra (optional) plugin metadata
 
     // License: one of 'APACHE', 'GPL2', 'GPL3'
-//    def license = "APACHE"
+    def license = "APACHE"
 
     // Details of company behind the plugin (if there is one)
 //    def organization = [ name: "My Company", url: "http://www.my-company.com/" ]
@@ -36,13 +34,13 @@ Integrates the Common Reusable SHell (CRaSH - http://crashub.org/ ) into grails.
 //    def developers = [ [ name: "Joe Bloggs", email: "joe@bloggs.net" ]]
 
     // Location of the plugin's issue tracker.
-//    def issueManagement = [ system: "JIRA", url: "http://jira.grails.org/browse/GPMYPLUGIN" ]
+    def issueManagement = [ system: "GITHUB", url: "https://github.com/crashub/grails/issues" ]
 
     // Online location of the plugin's browseable source code.
-//    def scm = [ url: "http://svn.codehaus.org/grails-plugins/" ]
+    def scm = [ url: "https://github.com/crashub/grails" ]
 
     def doWithWebDescriptor = { xml ->
-        // TODO Implement additions to web.xml (optional), this event occurs before
+        // Implement additions to web.xml (optional), this event occurs before
     }
 
     def doWithSpring = {
@@ -63,25 +61,25 @@ Integrates the Common Reusable SHell (CRaSH - http://crashub.org/ ) into grails.
     }
 
     def doWithDynamicMethods = { ctx ->
-        // TODO Implement registering dynamic methods to classes (optional)
+        // Implement registering dynamic methods to classes (optional)
     }
 
     def doWithApplicationContext = { applicationContext ->
-        // TODO Implement post initialization spring config (optional)
+        //  Implement post initialization spring config (optional)
     }
 
     def onChange = { event ->
-        // TODO Implement code that is executed when any artefact that this plugin is
+        // Implement code that is executed when any artefact that this plugin is
         // watching is modified and reloaded. The event contains: event.source,
         // event.application, event.manager, event.ctx, and event.plugin.
     }
 
     def onConfigChange = { event ->
-        // TODO Implement code that is executed when the project configuration changes.
+        // Implement code that is executed when the project configuration changes.
         // The event is the same as for 'onChange'.
     }
 
     def onShutdown = { event ->
-        // TODO Implement code that is executed when the application shuts down (optional)
+        // Implement code that is executed when the application shuts down (optional)
     }
 }
