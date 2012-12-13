@@ -25,7 +25,9 @@ grails.project.dependency.resolution = {
 
         // runtime 'mysql:mysql-connector-java:5.1.18'
 
-        compile 'org.crsh:crsh.shell.embed.spring:1.2.0-cr3'
+        compile('org.crsh:crsh.shell.embed.spring:1.2.0-cr3') {
+            excludes 'crsh.shell.telnet'
+        }
         compile 'org.crsh:crsh.shell.ssh:1.2.0-cr3'
     }
 
