@@ -13,8 +13,8 @@ class CrashGrailsPlugin {
     ]
 
     def title = "CRaSH Grails Plugin " // Headline display name of the plugin
-    def author = "Stephan Jaetzold"
-    def authorEmail = "stephan@jaetzold.de"
+//    def author = "Stephan Jaetzold"
+//    def authorEmail = "stephan@jaetzold.de"
     def description = '''\
 Integrates the Common Reusable SHell (CRaSH - http://crashub.org/ ) into grails.
 '''
@@ -30,8 +30,7 @@ Integrates the Common Reusable SHell (CRaSH - http://crashub.org/ ) into grails.
     // Details of company behind the plugin (if there is one)
 //    def organization = [ name: "My Company", url: "http://www.my-company.com/" ]
 
-    // Any additional developers beyond the author specified above.
-//    def developers = [ [ name: "Joe Bloggs", email: "joe@bloggs.net" ]]
+    def developers = [[ name: "Stephan Jaetzold", email: "stephan@jaetzold.de" ]]
 
     // Location of the plugin's issue tracker.
     def issueManagement = [ system: "GITHUB", url: "https://github.com/crashub/grails/issues" ]
