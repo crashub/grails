@@ -22,19 +22,20 @@ import org.crsh.cmdline.annotations.Command
 import org.crsh.cmdline.annotations.Usage
 import org.crsh.shell.impl.command.CRaSHSession
 import org.crsh.command.GroovyScriptCommand
+import org.crsh.command.CRaSHCommand
 
-public class evaluate extends org.crsh.command.CRaSHCommand {
+class evaluate extends CRaSHCommand {
 
     @Command
     @Usage("evaluate groovy script")
-    public void main(@Usage("the code") @Argument String scriptText) {
-        CRaSHSession session = (CRaSHSession)context.session;
+    void main(@Usage("the code") @Argument String scriptText) {
+        CRaSHSession session = context.session
         session['grailsApplication'] = context.attributes.beans['grailsApplication']
-        GroovyShell shell = session.getGroovyShell();
-        GroovyScriptCommand script = shell.parse(scriptText);
-        script.setSession(session);
-        script.open(context);
+        GroovyShell shell = session.getGroovyShell()
+        GroovyScriptCommand script = shell.parse(scriptText)
+        script.setSession(session)
+        script.open(context)
         script.flush()
-        script.close();
+        script.close()
     }
 }
