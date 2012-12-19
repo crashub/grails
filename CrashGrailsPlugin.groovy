@@ -9,7 +9,7 @@ class CrashGrailsPlugin {
 
     def license = "APACHE"
     def developers = [[name: "Stephan Jaetzold", email: "stephan@jaetzold.de"]]
-    def issueManagement = [system: "GITHUB", url: "https://github.com/crashub/grails/issues"]
+    def issueManagement = [system: "Github", url: "https://github.com/crashub/grails/issues"]
     def scm = [url: "https://github.com/crashub/grails"]
 
     def doWithSpring = {
