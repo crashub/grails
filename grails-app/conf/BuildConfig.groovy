@@ -1,40 +1,66 @@
-grails.project.class.dir = "target/classes"
-grails.project.test.class.dir = "target/test-classes"
-grails.project.test.reports.dir = "target/test-reports"
+grails.project.work.dir = 'target'
+grails.project.source.level = 1.6
 
 grails.project.dependency.resolution = {
-    // inherit Grails' default dependencies
-    inherits("global") {
-        // uncomment to disable ehcache
-        // excludes 'ehcache'
-    }
-    log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
+
+    inherits 'global'
+    log 'warn'
+
     repositories {
         grailsCentral()
-        // uncomment the below to enable remote dependency resolution
-        // from public Maven repositories
         mavenLocal()
         mavenCentral()
-        //mavenRepo "http://snapshots.repository.codehaus.org"
-        //mavenRepo "http://repository.codehaus.org"
-        //mavenRepo "http://download.java.net/maven/2/"
-        //mavenRepo "http://repository.jboss.com/maven2/"
     }
-    dependencies {
-        // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
-        // runtime 'mysql:mysql-connector-java:5.1.18'
+    dependencies {
+
+        compile('org.crsh:crsh.shell.core:1.2.0-cr3') {
+            excludes 'crsh.cmdline', 'derby', 'groovy-all', 'hibernate-entitymanager', 'ivy', 'jline', 'junit',
+                     'servlet-api', 'shrinkwrap-api', 'shrinkwrap-impl-base', 'slf4j-api', 'slf4j-jdk14', 'tools'
+        }
+
+        compile('org.crsh:crsh.cmdline:1.2.0-cr3') {
+            excludes 'junit', 'slf4j-api', 'slf4j-jdk14'
+        }
 
         compile('org.crsh:crsh.shell.embed.spring:1.2.0-cr3') {
-            excludes 'crsh.shell.telnet'
+            excludes 'crsh.shell.core', 'crsh.shell.telnet', 'junit', 'servlet-api', 'slf4j-api', 'slf4j-jdk14',
+                     'spring-beans', 'spring-context', 'spring-core', 'spring-web'
         }
-        compile 'org.crsh:crsh.shell.ssh:1.2.0-cr3'
+
+        compile('org.crsh:crsh.shell.ssh:1.2.0-cr3') {
+            excludes 'bcprov-jdk16', 'crsh.shell.core', 'junit', 'mina-core', 'slf4j-api', 'slf4j-jdk14',
+                     'sshd-core', 'sshd-pam'
+        }
+
+        compile('org.apache.sshd:sshd-core:0.6.0') {
+            excludes 'bcprov-jdk15', 'commons-httpclient', 'commons-logging', 'ganymed-ssh2', 'jline', 'jsch',
+                     'junit', 'jzlib', 'mina-core', 'slf4j-log4j12', 'spring-context', 'tomcat-apr'
+        }
+
+        compile('com.jcraft:jsch:0.1.45') {
+            excludes 'junit', 'jzlib'
+        }
+
+        compile 'com.jcraft:jzlib:1.0.7'
+
+        compile('org.apache.sshd:sshd-pam:0.6.0') {
+            excludes 'jpam', 'sshd-core'
+        }
+
+        compile 'org.bouncycastle:bcprov-jdk16:1.46'
+
+        compile('org.apache.mina:mina-core:2.0.4') {
+            excludes 'easymock', 'easymockclassextension', 'junit', 'slf4j-api', 'slf4j-log4j12'
+        }
+
+        compile('net.sf.jpam:jpam:1.1') {
+            excludes 'checkstyle', 'checkstyle-optional', 'commons-logging', 'junit'
+        }
     }
 
     plugins {
-        build(":tomcat:$grailsVersion",
-              ":release:2.2.0",
-              ":rest-client-builder:1.0.2") {
+        build(":release:2.2.0", ":rest-client-builder:1.0.3") {
             export = false
         }
     }

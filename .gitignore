@@ -5,7 +5,6 @@ target
 target-eclipse
 .link_to_grails_plugins
 
-.svn
 .DS_Store
 /logs/
 /.gradle
@@ -20,3 +19,7 @@ target-eclipse
 .project
 atlassian-ide-plugin.xml
 /out/
+
+plugin.xml
+grails-crash-*.zip
+web-app
