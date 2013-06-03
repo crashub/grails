@@ -20,7 +20,7 @@ Its config properties can be set by assigning a map of config properties to `plu
 
 To include telnet support include the following dependency in your own BuildConfig:
 
-    runtime 'org.crsh:crsh.shell.telnet:1.2.5'
+    runtime 'org.crsh:crsh.shell.telnet:1.2.6'
 
 # Grails specific usage
 

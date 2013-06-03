@@ -1,7 +1,7 @@
 import org.crsh.spring.SpringWebBootstrap
 
 class CrashGrailsPlugin {
-    def version = "1.2.5"
+    def version = "1.2.6"
     def grailsVersion = "2.1 > *"
     def title = "CRaSH Grails Plugin"
     def description = 'Integrates the Common Reusable SHell (CRaSH - http://crashub.org/ ) into Grails.'

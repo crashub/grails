@@ -14,21 +14,21 @@ grails.project.dependency.resolution = {
 
     dependencies {
 
-        compile('org.crsh:crsh.shell.core:1.2.5') {
+        compile('org.crsh:crsh.shell.core:1.2.6') {
             excludes 'crsh.cli', 'derby', 'groovy-all', 'hibernate-entitymanager', 'ivy', 'jline', 'junit',
                      'servlet-api', 'shrinkwrap-api', 'shrinkwrap-impl-base', 'slf4j-api', 'slf4j-jdk14', 'tools'
         }
 
-        compile('org.crsh:crsh.cli:1.2.5') {
+        compile('org.crsh:crsh.cli:1.2.6') {
             excludes 'junit', 'slf4j-api', 'slf4j-jdk14'
         }
 
-        compile('org.crsh:crsh.shell.embed.spring:1.2.5') {
+        compile('org.crsh:crsh.shell.embed.spring:1.2.6') {
             excludes 'crsh.shell.core', 'crsh.shell.telnet', 'junit', 'servlet-api', 'slf4j-api', 'slf4j-jdk14',
                      'spring-beans', 'spring-context', 'spring-core', 'spring-web'
         }
 
-        compile('org.crsh:crsh.shell.ssh:1.2.5') {
+        compile('org.crsh:crsh.shell.ssh:1.2.6') {
             excludes 'bcprov-jdk16', 'crsh.shell.core', 'junit', 'mina-core', 'slf4j-api', 'slf4j-jdk14',
                      'sshd-core', 'sshd-pam'
         }
