@@ -1,4 +1,8 @@
 import org.codehaus.groovy.grails.plugins.GrailsPluginManager
+import org.crsh.cli.Argument
+import org.crsh.cli.Command
+import org.crsh.cli.Required
+import org.crsh.command.InvocationContext
 
 import javax.smartcardio.CommandAPDU;
 

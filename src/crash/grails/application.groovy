@@ -1,10 +1,13 @@
+import org.crsh.command.InvocationContext
+import org.crsh.cli.Command
+
 public class application {
 
   @Command
   public void config(InvocationContext<Map> context) {
     def app = context.attributes.application
     app.flatConfig.each { k,v ->
-      context.provide([name:k,value:v])
+      context.provide([NAME:k,value:v])
     }
   }
 
@@ -20,7 +23,7 @@ public class application {
   public void domains(InvocationContext<Map> context) {
     def app = context.attributes.application
     app.domainClasses.each { c ->
-      context.provide([name:c.name])
+      context.provide([NAME:c.name])
     }
   }
 
@@ -36,7 +39,7 @@ public class application {
   public void codecs(InvocationContext<Map> context) {
     def app = context.attributes.application
     app.codecClasses.each { c ->
-      context.provide([name:c.name,FULLNAME:c.fullName])
+      context.provide([NAME:c.name,FULLNAME:c.fullName])
     }
   }
 
@@ -44,7 +47,7 @@ public class application {
   public void taglibs(InvocationContext<Map> context) {
     def app = context.attributes.application
     app.tagLibClasses.each { c ->
-      context.provide([name:c.name,NAMESPACE:c.namespace,"TAG NAMES":c.tagNames])
+      context.provide([NAME:c.name,NAMESPACE:c.namespace,"TAG NAMES":c.tagNames])
     }
   }
 
@@ -52,7 +55,7 @@ public class application {
   public void urlmappings(InvocationContext<Map> context) {
     def app = context.attributes.application
     app.urlMappingsClasses.each { c ->
-      context.provide([name:c.name,"EXCLUDE PATTERNS":c.excludePatterns?:"",FULLNAME:c.fullName])
+      context.provide([NAME:c.name,"EXCLUDE PATTERNS":c.excludePatterns?:"",FULLNAME:c.fullName])
     }
   }
 
@@ -60,7 +63,7 @@ public class application {
   public void bootstraps(InvocationContext<Map> context) {
     def app = context.attributes.application
     app.bootstrapClasses.each { c ->
-      context.provide([name:c.name,,FULLNAME:c.fullName])
+      context.provide([NAME:c.name,FULLNAME:c.fullName])
     }
   }
 }
