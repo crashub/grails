@@ -2,10 +2,12 @@ import org.codehaus.groovy.grails.plugins.GrailsPluginManager
 import org.crsh.cli.Argument
 import org.crsh.cli.Command
 import org.crsh.cli.Required
+import org.crsh.cli.Usage
 import org.crsh.command.InvocationContext
 
 import javax.smartcardio.CommandAPDU;
 
+@Usage("provides a set of command for interacting with grails plugins")
 public class plugin {
 
   private GrailsPluginManager getPluginManager(InvocationContext<?> context) {
@@ -13,6 +15,7 @@ public class plugin {
   }
 
   @Command
+  @Usage("list all plugins")
   public void ls(InvocationContext<Map> context) {
     def mgr = getPluginManager(context);
     def userPlugins = mgr.userPlugins as List;
@@ -31,7 +34,8 @@ public class plugin {
   }
 
   @Command
-  public void info(InvocationContext<Map> context, @Argument @Required String name) {
+  @Usage("provide detailled information about a specific plugin")
+  public void info(InvocationContext<Map> context, @Argument @Required @Usage("the plugin name") String name) {
     def mgr = getPluginManager(context);
     def plugin = mgr.getAllPlugins().find { it.name == name }
     if (plugin == null) {
@@ -58,7 +62,8 @@ public class plugin {
   }
 
   @Command
-  public void properties(InvocationContext<Map> context, @Argument @Required String name) {
+  @Usage("provide the properties about a specific plugin")
+  public void properties(InvocationContext<Map> context, @Argument @Required @Usage("the plugin name") String name) {
     def mgr = getPluginManager(context);
     def plugin = mgr.getAllPlugins().find { it.name == name }
     if (plugin == null) {
@@ -71,7 +76,8 @@ public class plugin {
   }
 
   @Command
-  public void refresh(@Argument List<String> name) {
+  @Usage("refresh a list of plugins")
+  public void refresh(@Argument @Usage("the plugins to refresh") List<String> name) {
     def mgr = getPluginManager(context);
     name.each(mgr.&refreshPlugin)
   }
