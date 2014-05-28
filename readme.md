@@ -28,7 +28,7 @@ Its config properties can be set by assigning a map of config properties to `plu
 
 To include telnet support include the following dependency in your own BuildConfig:
 
-    runtime 'org.crashub:crash.connectors.telnet:1.3.0-beta23'
+    runtime 'org.crashub:crash.connectors.telnet:1.3.0-cr1'
 
 # Installation
 
