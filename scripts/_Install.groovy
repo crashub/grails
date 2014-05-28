@@ -16,35 +16,45 @@ log = LogFactory.getLog("crash")
 
 // Extracting crash commands in the user base dir
 private void copyCmd(org.crsh.vfs.File src, File dst) throws IOException {
+  log.info("Copying ${src.path.value} to ${dst}")
   if (src.hasChildren()) {
     if (!dst.exists()) {
-      if (dst.mkdir()) {
-        log.info("Could not create dir " + dst.getCanonicalPath());
+      if (dst.mkdirs()) {
+        log.info("Could not create dir " + dst.getCanonicalPath())
       }
     }
     if (dst.exists() && dst.isDirectory()) {
       for (org.crsh.vfs.File child : src.children()) {
-        copyCmd(child, new File(dst, child.getName()));
+        copyCmd(child, new File(dst, child.getName()))
       }
+    } else {
+      log.info("Cannot copy to non existing ${dst}")
     }
   } else {
     if (!dst.exists()) {
-      org.crsh.vfs.Resource resource = src.getResource();
+      def resource = src.getResource()
       if (resource != null) {
-        log.info("Copied command " + src.getPath().getValue() + " to " + dst.getCanonicalPath());
-        org.crsh.util.Utils.copy(new ByteArrayInputStream(resource.getContent()), new FileOutputStream(dst));
+        log.info("Copied command " + src.getPath().getValue() + " to " + dst.getCanonicalPath())
+        org.crsh.util.Utils.copy(new ByteArrayInputStream(resource.getContent()), new FileOutputStream(dst))
       }
+    } else {
+      log.info("Preserving existing ${dst}")
     }
   }
 }
+
+//
+log.info("Starting CRaSH install")
 try {
-  org.crsh.vfs.FS cmdFS = new org.crsh.vfs.FS();
-  cmdFS.mount(Thread.currentThread().getContextClassLoader(), org.crsh.vfs.Path.get("/crash/commands/"));
+  def cmdFS = new org.crsh.vfs.FS()
+  cmdFS.mount(Thread.currentThread().getContextClassLoader(), org.crsh.vfs.Path.get("/crash/commands/"))
   cmdFS.mount(new File("$crashPluginDir/src/crash/"));
-  org.crsh.vfs.File f = cmdFS.get(org.crsh.vfs.Path.get("/"))
-  File dst = new File("${basedir}/web-app/WEB-INF/crash/commands");
-  copyCmd(f, dst)
+  def src = cmdFS.get(org.crsh.vfs.Path.get("/"))
+  def dst = new File("${basedir}/web-app/WEB-INF/crash/commands");
+  copyCmd(src, dst)
 } catch (Exception e) {
   // This should not prevent crash from running
-  log.warn("Could not copy CRaSH base scripts", e);
+  log.error("Could not copy CRaSH base scripts", e);
+} finally {
+  log.info("CRaSH installed")
 }
