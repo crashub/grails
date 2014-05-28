@@ -22,4 +22,5 @@ atlassian-ide-plugin.xml
 
 plugin.xml
 grails-crash-*.zip
+grails-crash*.zip.sha1
 web-app
