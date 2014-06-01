@@ -10,12 +10,16 @@
 //
 
 import org.apache.commons.logging.LogFactory
+import org.apache.commons.logging.Log;
+import org.crsh.vfs.Path;
+import org.crsh.vfs.FS;
+import org.crsh.util.Utils;
 
 // Get a logger
-log = LogFactory.getLog("crash")
+def log = LogFactory.getLog("crash")
 
 // Extracting crash commands in the user base dir
-private void copyCmd(org.crsh.vfs.File src, File dst) throws IOException {
+private void copyCmd(Log log, org.crsh.vfs.File src, File dst) throws IOException {
   log.info("Copying ${src.path.value} to ${dst}")
   if (src.hasChildren()) {
     if (!dst.exists()) {
@@ -25,7 +29,7 @@ private void copyCmd(org.crsh.vfs.File src, File dst) throws IOException {
     }
     if (dst.exists() && dst.isDirectory()) {
       for (org.crsh.vfs.File child : src.children()) {
-        copyCmd(child, new File(dst, child.getName()))
+        copyCmd(log, child, new File(dst, child.getName()))
       }
     } else {
       log.info("Cannot copy to non existing ${dst}")
@@ -35,7 +39,7 @@ private void copyCmd(org.crsh.vfs.File src, File dst) throws IOException {
       def resource = src.getResource()
       if (resource != null) {
         log.info("Copied command " + src.getPath().getValue() + " to " + dst.getCanonicalPath())
-        org.crsh.util.Utils.copy(new ByteArrayInputStream(resource.getContent()), new FileOutputStream(dst))
+        Utils.copy(new ByteArrayInputStream(resource.getContent()), new FileOutputStream(dst))
       }
     } else {
       log.info("Preserving existing ${dst}")
@@ -46,12 +50,12 @@ private void copyCmd(org.crsh.vfs.File src, File dst) throws IOException {
 //
 log.info("Starting CRaSH install")
 try {
-  def cmdFS = new org.crsh.vfs.FS()
-  cmdFS.mount(Thread.currentThread().getContextClassLoader(), org.crsh.vfs.Path.get("/crash/commands/"))
+  def cmdFS = new FS()
+  cmdFS.mount(Thread.currentThread().getContextClassLoader(), Path.get("/crash/commands/"))
   cmdFS.mount(new File("$crashPluginDir/src/crash/"));
-  def src = cmdFS.get(org.crsh.vfs.Path.get("/"))
+  def src = cmdFS.get(Path.get("/"))
   def dst = new File("${basedir}/web-app/WEB-INF/crash/commands");
-  copyCmd(src, dst)
+  copyCmd(log, src, dst)
 } catch (Exception e) {
   // This should not prevent crash from running
   log.error("Could not copy CRaSH base scripts", e);
